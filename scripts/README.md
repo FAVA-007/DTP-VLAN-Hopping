@@ -6,61 +6,28 @@ Esta carpeta contiene scripts y herramientas para ejecutar el ataque DTP VLAN Ho
 
 ## 📋 Archivos Disponibles
 
-### 1. `yersinia_dtp_attack.sh`
-**Tipo**: Bash Script
-**Propósito**: Automatizar el ataque DTP con Yersinia
-**Función**: Negociar puerto de acceso para convertirlo en trunk
+### 1. `vlan_hopping.py`
+**Tipo**: Python Script
+**Propósito**: Negociación DTP automática con Scapy
+**Función**: Enviar frames DTP "Dynamic Desirable" para obtener acceso multi-VLAN
 
-```bash
-bash yersinia_dtp_attack.sh -i eth0 -t 192.168.1.50 -m desirable
+```python
+python3 vlan_hopping.py
 ```
 
 ---
 
-### 2. `dtp_monitor.sh`
-**Tipo**: Bash Script
-**Propósito**: Monitorear estado de puertos del switch
-**Función**: Verificar cambios de access a trunk
-
-```bash
-bash dtp_monitor.sh -s 192.168.1.1 -u admin -p password
-```
-
----
-
-### 3. `port_config_vulnerable.conf`
+### 2. `port_config_vulnerable.conf`
 **Tipo**: Cisco IOS Configuration
 **Propósito**: Configuración vulnerable de puerto
 **Contenido**: Puerto en modo dynamic auto sin switchport nonegotiate
 
 ---
 
-### 4. `port_config_hardened.conf`
+### 3. `port_config_hardened.conf`
 **Tipo**: Cisco IOS Configuration
 **Propósito**: Configuración segura (mitigada)
 **Contenido**: Puerto con switchport nonegotiate y port security
-
----
-
-### 5. `dtp_negotiation.py`
-**Tipo**: Python Script
-**Propósito**: Crafting manual de frames DTP
-**Función**: Crear solicitudes DTP personalizadas con Scapy
-
-```python
-python3 dtp_negotiation.py --mode desirable --interface eth0
-```
-
----
-
-### 6. `vlan_access_test.py`
-**Tipo**: Python Script
-**Propósito**: Validar acceso multi-VLAN después del ataque
-**Función**: Probar conectividad a múltiples VLANs (eth0.20, eth0.30, etc.)
-
-```python
-python3 vlan_access_test.py --vlans 10,20,30,40 --target-ips 192.168.20.1,192.168.30.1
-```
 
 ---
 
